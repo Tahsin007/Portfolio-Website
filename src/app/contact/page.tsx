@@ -31,22 +31,55 @@ export default function ContactPage() {
         </div>
 
         <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">
-          <form className="space-y-6">
+          <form 
+            action="https://formsubmit.co/tahsinahmed.iit@gmail.com" 
+            method="POST"
+            className="space-y-6"
+          >
+            {/* Honeypot for spam protection */}
+            <input type="text" name="_honey" className="hidden" />
+            
+            {/* Disable Captcha to minimalize friction (optional) */}
+            <input type="hidden" name="_captcha" value="false" />
+
+            {/* Success Page Configuration (optional - defaults to FormSubmit success page) */}
+            {/* <input type="hidden" name="_next" value="https://yourdomain.co/thanks.html" /> */}
+
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <label htmlFor="name" className="text-sm font-medium">Name</label>
-                <input id="name" className="w-full rounded-lg border border-white/10 bg-black/20 px-4 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" placeholder="John Doe" />
+                <input 
+                  id="name" 
+                  name="name" 
+                  required
+                  className="w-full rounded-lg border border-white/10 bg-black/20 px-4 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" 
+                  placeholder="John Doe" 
+                />
               </div>
               <div className="space-y-2">
                 <label htmlFor="email" className="text-sm font-medium">Email</label>
-                <input id="email" type="email" className="w-full rounded-lg border border-white/10 bg-black/20 px-4 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" placeholder="john@example.com" />
+                <input 
+                  id="email" 
+                  name="email" 
+                  type="email" 
+                  required
+                  className="w-full rounded-lg border border-white/10 bg-black/20 px-4 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" 
+                  placeholder="john@example.com" 
+                />
               </div>
             </div>
             <div className="space-y-2">
                 <label htmlFor="message" className="text-sm font-medium">Message</label>
-                <textarea id="message" rows={5} className="w-full rounded-lg border border-white/10 bg-black/20 px-4 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" placeholder="Tell us about your project..." />
+                <textarea 
+                  id="message" 
+                  name="message" 
+                  rows={5} 
+                  required
+                  className="w-full rounded-lg border border-white/10 bg-black/20 px-4 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" 
+                  placeholder="Tell us about your project..." 
+                />
             </div>
-            <button className="w-full rounded-full bg-primary py-3 font-medium text-primary-foreground hover:bg-primary/90 transition-colors">
+            <button type="submit" className="w-full rounded-full bg-primary py-3 font-medium text-primary-foreground hover:bg-primary/90 transition-colors">
                 Send Message
             </button>
           </form>
