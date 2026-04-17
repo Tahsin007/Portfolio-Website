@@ -1,6 +1,6 @@
 // === NEW V2 SECTIONS ===
 import { HeroV2 } from "@/components/landing/hero-v2";
-import { ProjectsShowcaseV2 } from "@/components/landing/projects-showcase-v2";
+import { ProjectsShowcaseV3 } from "@/components/landing/projects-showcase-v3";
 import { StatsCardsV2 } from "@/components/landing/stats-cards-v2";
 
 // === PREVIOUS SECTIONS (commented out) ===
@@ -20,7 +20,7 @@ export default function Home() {
     <div className="flex flex-col gap-0 w-full overflow-x-hidden">
       {/* === NEW V2 SECTIONS === */}
       <HeroV2 />
-      <ProjectsShowcaseV2 />
+      <ProjectsShowcaseV3 />
       <StatsCardsV2 />
 
       {/* === PREVIOUS FIRST 3 SECTIONS (commented out) === */}
