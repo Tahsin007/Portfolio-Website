@@ -1,140 +1,189 @@
 "use client"
 
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
-import { useRef } from "react";
-// import { Button } from "@/components/ui/button"; // Assuming a button component exists
-import Image from "next/image";
-import { ArrowRight, Link } from "lucide-react";
+import { useEffect, useRef } from "react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { AnimatedButton } from "../ui/animated-button"
+import { 
+  ArrowUpRight, 
+  Monitor, 
+  LayoutTemplate, 
+  Settings, 
+  GraduationCap, 
+  LineChart 
+} from "lucide-react"
 
-const servicesData = [
-  {
-    title: "Web Development",
-    description: "Crafting responsive and high-performance websites tailored to your needs.",
-    image: "/public/images/saas-website.webp", // Placeholder image
-  },
-  {
-    title: "UI/UX Design",
-    description: "Creating intuitive and engaging user interfaces for exceptional user experiences.",
-    image: "/public/images/digital-wellness-day.webp",
-  },
-  {
-    title: "Mobile App Development",
-    description: "Building native and cross-platform mobile applications for iOS and Android.",
-    image: "/public/images/ai-employee-solutions.webp",
-  },
-  {
-    title: "E-commerce Solutions",
-    description: "Developing robust online stores that drive sales and enhance customer experience.",
-    image: "/public/images/luminous-jewel.webp",
-  },
-  {
-    title: "SEO & Digital Marketing",
-    description: "Boosting your online visibility and driving organic traffic to your business.",
-    image: "/public/images/monarch-inspection.webp",
-  },
-  {
-    title: "Cloud Solutions",
-    description: "Leveraging cloud technologies for scalable, secure, and efficient infrastructure.",
-    image: "/public/images/tristone-commercial.webp",
-  },
-  {
-    title: "Consulting & Strategy",
-    description: "Providing expert guidance to define your digital strategy and achieve business goals.",
-    image: "/public/images/coach-dave.webp",
-  },
-];
+gsap.registerPlugin(ScrollTrigger)
 
-interface ServiceCardProps {
-  service: typeof servicesData[0];
-  index: number;
-  scrollYProgress: MotionValue<number>; // Framer Motion's MotionValue<number>
-  totalCards: number;
-}
-
-const ServiceCard = ({ service, index, scrollYProgress, totalCards }: ServiceCardProps) => {
-  const targetScale = 1 - ((totalCards - index) * 0.05);
-  const targetOpacity = 1 - ((totalCards - index) * 0.1);
-
-  const y = useTransform(scrollYProgress, [0, 1], [`${index * 50}px`, `${index * -50}px`]);
-  const scale = useTransform(scrollYProgress, [0, 1], [targetScale, 1]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [targetOpacity, 1]);
-
-  return (
-    <motion.div
-      style={{
-        y,
-        scale,
-        opacity,
-        position: "absolute",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: index,
-        paddingTop: `${index * 20}px`,
-      }}
-      className="w-full max-w-md bg-card border border-border/40 rounded-lg shadow-lg p-6 flex flex-col items-center text-center"
-    >
-      {service.image && (
-        <Image
-          src={service.image}
-          alt={service.title}
-          width={100}
-          height={100}
-          className="mb-4 rounded-full object-cover"
-        />
-      )}
-      <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-      <p className="text-muted-foreground text-sm">{service.description}</p>
-    </motion.div>
-  );
-};
+const phases = [
+  {
+    id: 1,
+    title: "Upgrade your site to 7.1",
+    description:
+      "No need to purchase a plugin yourself! Take advantage of my purchased tool to facilitate moving your content from Squarespace 7.0 to Squarespace 7.1",
+    icon: ArrowUpRight,
+  },
+  {
+    id: 2,
+    title: "Custom Squarespace Websites",
+    description:
+      "I build custom Squarespace websites for small businesses, entrepreneurs, and creatives. My goal is to create a website that is not only visually stunning but also highly functional.",
+    icon: Monitor,
+  },
+  {
+    id: 3,
+    title: "Squarespace Website Redesign",
+    description:
+      "I offer professional redesign services to help you create a website that perfectly aligns with your brand's evolution and provides an exceptional user experience.",
+    icon: LayoutTemplate,
+  },
+  {
+    id: 4,
+    title: "Squarespace Maintenance",
+    description:
+      "Keep your website up-to-date and running smoothly. I offer ongoing maintenance services so you can focus on your business with complete peace of mind.",
+    icon: Settings,
+  },
+  {
+    id: 5,
+    title: "Squarespace Training",
+    description:
+      "Empower yourself. I provide dedicated training sessions to help you learn how to confidently manage and update your website without needing a developer.",
+    icon: GraduationCap,
+  },
+  {
+    id: 6,
+    title: "Squarespace SEO",
+    description:
+      "Improve your website's visibility. My technical and on-page SEO services will help your site rank higher in search engines, driving more organic traffic.",
+    icon: LineChart,
+  }
+]
 
 export function Services() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
+  const wrapperRef = useRef<HTMLDivElement>(null)
+  const stickyRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([])
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[]
+
+      gsap.set(cards, { opacity: 0, y: 100, scale: 0.95 })
+      gsap.set(cards[0], { opacity: 1, y: 0, scale: 1 })
+
+      ScrollTrigger.create({
+        trigger: wrapperRef.current,
+        start: "top top",
+        end: "bottom bottom",
+        pin: stickyRef.current,
+        pinSpacing: false,
+      })
+
+      const vh = window.innerHeight * 0.75
+
+      cards.forEach((card, i) => {
+        if (i === 0) return
+
+        ScrollTrigger.create({
+          trigger: wrapperRef.current,
+          start: `top+=${(i - 1) * vh} top`,
+          end: `top+=${i * vh} top`,
+          onEnter: () => {
+            gsap.to(cards[i - 1], { opacity: 0, y: -80, scale: 0.95, duration: 0.5, ease: "power2.inOut" })
+            gsap.fromTo(card, { opacity: 0, y: 100, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.2)", delay: 0.1 })
+          },
+          onLeaveBack: () => {
+            gsap.to(card, { opacity: 0, y: 100, scale: 0.95, duration: 0.5, ease: "power2.inOut" })
+            gsap.fromTo(cards[i - 1], { opacity: 0, y: -80, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.2)", delay: 0.1 })
+          },
+        })
+      })
+    }, wrapperRef)
+
+    return () => ctx.revert()
+  }, [])
 
   return (
-    <section className="py-24 bg-background" ref={containerRef}>
-      <div className="mx-auto max-w-7xl px-4 md:px-6 grid grid-cols-1 lg:grid-cols-2 gap-16">
-        {/* Left Side: Text Content and Button */}
-        <div className="flex flex-col justify-center space-y-6">
-          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl font-serif">
-            Our Expertise, Your Success
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            We offer a comprehensive suite of digital services designed to elevate your brand, engage your audience, and drive measurable results. From innovative web development to strategic digital marketing, our team is dedicated to transforming your vision into reality.
-          </p>
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-        >
-          <Link
-            href="/contact"
-            className="group inline-flex items-center justify-center rounded-full border-2 border-foreground/80 bg-transparent px-10 py-4 text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] text-foreground transition-all duration-300 hover:bg-foreground hover:text-background hover:scale-105 hover:shadow-lg"
-          >
-            Web Design Services
-            <ArrowRight className="ml-3 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
-        </motion.div>
-        </div>
+    <div ref={wrapperRef} style={{ height: `${phases.length * 75}vh` }}>
+      <div
+        ref={stickyRef}
+        className="h-screen w-full flex items-center px-6 md:px-12 lg:px-20 overflow-hidden relative"
+      >
+        {/* Subtle background decoration */}
+        <div className="absolute inset-0 pointer-events-none -z-10"
+          style={{
+            backgroundImage: `radial-gradient(var(--foreground) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px',
+            opacity: 0.03
+          }}
+        />
 
-        {/* Right Side: Stacked Cards with Scroll Animation */}
-        <div className="relative h-[800px] flex flex-col items-center justify-center">
-          {servicesData.map((service, i) => (
-            <ServiceCard
-              key={service.title}
-              service={service}
-              index={i}
-              scrollYProgress={scrollYProgress}
-              totalCards={servicesData.length}
-            />
-          ))}
+        <div className="mx-auto w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+          {/* LEFT — completely static */}
+          <div className="space-y-8 z-10">
+            <div className="inline-flex items-center rounded-full border border-rose-500/30 bg-rose-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-rose-500 dark:text-rose-400">
+              Our Services
+            </div>
+            
+            <div className="space-y-4">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.1]">
+                <span className="font-serif">Here&apos;s what </span>
+                <br className="hidden md:block" />
+                <span className="font-serif italic font-medium">we offer.</span>
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-md">
+                Here&apos;s what you can expect if you choose to work with us.
+                Everything starts with a quick intro call and it goes from there.
+              </p>
+            </div>
+
+            <AnimatedButton href="/contact">Get In Touch</AnimatedButton>
+          </div>
+
+          {/* RIGHT — stacked cards, only one visible at a time */}
+          <div className="relative w-full z-10 h-[400px] sm:h-[450px]">
+            {phases.map((phase, index) => {
+              const Icon = phase.icon;
+              return (
+                <div
+                  key={phase.id}
+                  ref={(el) => { cardsRef.current[index] = el }}
+                  className="absolute inset-0 w-full rounded-[2.5rem] border border-foreground/10 bg-background/60 p-8 sm:p-12 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] backdrop-blur-xl overflow-hidden group flex flex-col justify-between"
+                  style={{ willChange: "transform, opacity" }}
+                >
+                  {/* Animated Glowing Background Blobs */}
+                  <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-rose-500/10 dark:bg-rose-500/10 blur-[80px] group-hover:bg-rose-500/20 group-hover:scale-125 transition-all duration-700 ease-out" />
+                  <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 rounded-full bg-pink-500/10 dark:bg-pink-500/10 blur-[80px] group-hover:bg-pink-500/20 group-hover:scale-125 transition-all duration-700 ease-out" />
+                  
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between mb-8">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-foreground/5 px-4 py-2 text-sm font-semibold tracking-wide text-foreground shadow-sm transition-colors group-hover:bg-foreground/10">
+                        <span className="flex h-2 w-2 rounded-full bg-rose-500 animate-pulse" />
+                        Phase {String(phase.id).padStart(2, "0")}
+                      </span>
+                      
+                      <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-foreground/10 bg-background/80 shadow-sm backdrop-blur-md transition-all duration-500 group-hover:-translate-y-1 group-hover:scale-110 group-hover:border-rose-500/30 group-hover:shadow-rose-500/20">
+                        <Icon className="h-6 w-6 text-foreground group-hover:text-rose-500 transition-colors duration-300" />
+                      </div>
+                    </div>
+                    
+                    <h3 className="text-2xl sm:text-3xl font-bold mb-4 tracking-tight group-hover:text-rose-500 transition-colors duration-300">{phase.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                      {phase.description}
+                    </p>
+                  </div>
+
+                  {/* Decorative line at the bottom */}
+                  <div className="absolute bottom-0 left-8 right-8 h-[2px] bg-gradient-to-r from-transparent via-rose-500/20 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center" />
+                </div>
+              )
+            })}
+          </div>
+
         </div>
       </div>
-    </section>
-  );
+    </div>
+  )
 }

@@ -19,31 +19,35 @@ function StatCard({ value, suffix, icon, title, subtitle, delay }: StatCardProps
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay }}
       viewport={{ once: true }}
-      className="group relative flex flex-col items-center text-center space-y-3 p-8 md:p-10 rounded-3xl border border-border/30 bg-card/50 backdrop-blur-sm transition-all duration-500 hover:border-border/60 hover:bg-card/80 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
+      className="group relative flex flex-col items-center justify-center text-center space-y-3 p-8 md:p-10 rounded-[2.5rem] border border-foreground/10 bg-background/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] backdrop-blur-xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_8px_40px_rgb(225,29,72,0.1)]"
     >
-      {/* Subtle gradient overlay on hover */}
-      <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      {/* Animated Glowing Background Blobs */}
+      <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 rounded-full bg-rose-500/10 dark:bg-rose-500/10 blur-[60px] group-hover:bg-rose-500/20 group-hover:scale-125 transition-all duration-700 ease-out z-0 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-48 h-48 rounded-full bg-pink-500/10 dark:bg-pink-500/10 blur-[60px] group-hover:bg-pink-500/20 group-hover:scale-125 transition-all duration-700 ease-out z-0 pointer-events-none" />
       
+      {/* Decorative line at the bottom */}
+      <div className="absolute bottom-0 left-8 right-8 h-[2px] bg-gradient-to-r from-transparent via-rose-500/20 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center z-10 pointer-events-none" />
+
       {/* Value */}
-      <div className="relative flex items-baseline gap-1">
-        <span className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter font-serif">
+      <div className="relative z-10 flex items-baseline gap-1">
+        <span className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter font-serif group-hover:text-rose-500 transition-colors duration-300">
           {value}
         </span>
         {suffix && (
-          <span className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter text-muted-foreground">
+          <span className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter text-muted-foreground group-hover:text-rose-400 transition-colors duration-300">
             {suffix}
           </span>
         )}
         {icon && (
-          <span className="ml-1">
+          <span className="ml-2 z-10 transition-transform duration-500 group-hover:scale-110">
             {icon}
           </span>
         )}
       </div>
 
       {/* Labels */}
-      <div className="relative space-y-1">
-        <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em]">
+      <div className="relative z-10 space-y-1">
+        <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] group-hover:text-foreground transition-colors duration-300">
           {title}
         </p>
         <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground">

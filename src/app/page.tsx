@@ -12,6 +12,7 @@ import { ServicesGrid } from "@/components/landing/services-grid";
 import { Process } from "@/components/landing/process";
 import { Pricing } from "@/components/landing/pricing";
 import { Testimonials } from "@/components/landing/testimonials";
+import { AboutMe } from "@/components/landing/about-me";
 import { FAQ } from "@/components/landing/faq";
 import { Team } from "@/components/landing/team";
 import { ArticlesPreview } from "@/components/landing/articles-preview";
@@ -31,10 +32,11 @@ export default function Home() {
       {/* <FeaturedProjects /> */}
 
       {/* === REMAINING ORIGINAL SECTIONS (kept active) === */}
-      <ServicesGrid />
+      {/* <ServicesGrid /> */}
       <Process />
       <Pricing />
       <Testimonials />
+      <AboutMe />
       <FAQ />
       <ArticlesPreview />
       <Team />

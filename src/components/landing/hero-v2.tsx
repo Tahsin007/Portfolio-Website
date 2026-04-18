@@ -1,8 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight, MapPin } from "lucide-react"
-import Link from "next/link"
+import { MapPin } from "lucide-react"
+import { AnimatedButton } from "@/components/ui/animated-button"
 
 export function HeroV2() {
   return (
@@ -93,19 +93,9 @@ export function HeroV2() {
         </motion.p>
 
         {/* CTA Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-        >
-          <Link
-            href="/contact"
-            className="group inline-flex items-center justify-center rounded-full border-2 border-foreground/80 bg-transparent px-10 py-4 text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] text-foreground transition-all duration-300 hover:bg-foreground hover:text-background hover:scale-105 hover:shadow-lg"
-          >
-            Web Design Services
-            <ArrowRight className="ml-3 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
-        </motion.div>
+        <AnimatedButton href="/contact" delay={0.8}>
+          Web Design Services
+        </AnimatedButton>
 
         {/* Location Badge */}
         <motion.div
