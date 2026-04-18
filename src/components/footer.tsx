@@ -29,6 +29,9 @@ export function Footer() {
           </div>
           <div className="grid gap-2">
              <h3 className="font-medium">Socials</h3>
+             <Link href="mailto:tahsinahmed.iit@gmail.com" className="text-sm text-muted-foreground hover:text-foreground">
+               Email
+             </Link>
              <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">
                Twitter / X
              </Link>
