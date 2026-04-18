@@ -92,7 +92,7 @@ export const ProjectsShowcaseV3 = () => {
 
   const getCardWidth = useCallback((index: number) => { // Moved and memoized getCardWidth
     return index === currentIndex ? ACTIVE_CARD_WIDTH : INACTIVE_CARD_WIDTH;
-  }, [currentIndex, ACTIVE_CARD_WIDTH, INACTIVE_CARD_WIDTH]);
+  }, [currentIndex, ACTIVE_CARD_WIDTH, INACTIVE_CARD_WIDTH]); // Removed INACTIVE_CARD_HEIGHT
 
   // Auto-scroll functionality
   useEffect(() => {

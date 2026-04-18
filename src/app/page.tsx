@@ -1,6 +1,7 @@
 // === NEW V2 SECTIONS ===
 import { HeroV2 } from "@/components/landing/hero-v2";
 import { ProjectsShowcaseV3 } from "@/components/landing/projects-showcase-v3";
+import { Services } from "@/components/landing/services"; // Import the new Services component
 import { StatsCardsV2 } from "@/components/landing/stats-cards-v2";
 
 // === PREVIOUS SECTIONS (commented out) ===
@@ -21,6 +22,7 @@ export default function Home() {
       {/* === NEW V2 SECTIONS === */}
       <HeroV2 />
       <ProjectsShowcaseV3 />
+      <Services /> {/* The new Services section */}
       <StatsCardsV2 />
 
       {/* === PREVIOUS FIRST 3 SECTIONS (commented out) === */}

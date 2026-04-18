@@ -8,9 +8,9 @@ export default function ContactPage() {
       <div className="grid gap-12 lg:grid-cols-2">
         <div className="space-y-8">
           <div className="space-y-4">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Let's Work Together</h1>
+            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Let&apos;s Work Together</h1>
             <p className="text-lg text-muted-foreground">
-              Have a project in mind? We'd love to hear about it.
+              Have a project in mind? We&apos;d love to hear about it.
             </p>
           </div>
 

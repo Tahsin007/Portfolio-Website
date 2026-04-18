@@ -51,7 +51,7 @@ export function FAQ() {
              </div>
              <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">Questions Answered</h2>
              <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-                 If you don't see your question answered here it goes without saying, reach out.
+                 If you don&apos;t see your question answered here it goes without saying, reach out.
              </p>
          </div>
 

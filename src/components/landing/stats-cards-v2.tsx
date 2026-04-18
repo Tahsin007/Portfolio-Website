@@ -1,8 +1,7 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
+import { motion } from "framer-motion"
 import { Star } from "lucide-react"
-import { useRef, useEffect, useState } from "react"
 
 interface StatCardProps {
   value: string
@@ -11,36 +10,6 @@ interface StatCardProps {
   title: string
   subtitle: string
   delay: number
-}
-
-function AnimatedNumber({ target, duration = 2, delay = 0 }: { target: number; duration?: number; delay?: number }) {
-  const [count, setCount] = useState(0)
-  const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true })
-
-  useEffect(() => {
-    if (!isInView) return
-
-    const timeout = setTimeout(() => {
-      let start = 0
-      const increment = target / (duration * 60) // 60fps
-      const timer = setInterval(() => {
-        start += increment
-        if (start >= target) {
-          setCount(target)
-          clearInterval(timer)
-        } else {
-          setCount(Math.floor(start))
-        }
-      }, 1000 / 60)
-
-      return () => clearInterval(timer)
-    }, delay * 1000)
-
-    return () => clearTimeout(timeout)
-  }, [isInView, target, duration, delay])
-
-  return <span ref={ref}>{count}</span>
 }
 
 function StatCard({ value, suffix, icon, title, subtitle, delay }: StatCardProps) {

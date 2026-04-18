@@ -58,7 +58,7 @@ export function Testimonials() {
                      </div>
                      <div className="space-y-4 flex-1">
                          <h3 className="text-xl font-bold">{t.name}</h3>
-                         <p className="text-muted-foreground">"{t.quote}"</p>
+                         <p className="text-muted-foreground">{t.quote}</p>
                      </div>
                      <button className="w-full rounded-full border border-white/10 bg-white/5 py-3 text-sm font-medium transition-colors hover:bg-white/10">
                         Find him on X
