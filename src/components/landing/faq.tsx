@@ -3,39 +3,40 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Plus } from "lucide-react"
+import { SectionBadge } from "../ui/section-badge"
 
 const faqs = [
   {
-    question: "What services do you offer?",
-    answer: "We offer a comprehensive range of digital services including Web Design, Web Development (Next.js, React), Mobile App Development (iOS), and QA Testing.",
+    question: "What do you specialize in?",
+    answer: "We specialize in designing and developing custom Squarespace websites that are visually stunning, easy to manage, and optimized for conversions.",
   },
   {
-    question: "What is your pricing structure?",
-    answer: "We offer both fixed-price sprints for specific deliverables and monthly subscription models for ongoing development and design support. See our pricing section for details.",
+    question: "How much does a new Squarespace website cost?",
+    answer: "Our pricing depends on the scope of the project, including the number of pages, custom features, and design complexity. Contact us for a custom quote tailored to your specific needs.",
   },
   {
-    question: "How much experience does your team have?",
-    answer: "Our core team has a combined experience of over 24 years in the industry, having delivered 164+ successful projects.",
+    question: "Do you offer ongoing support after the site is launched?",
+    answer: "Yes! We offer monthly maintenance packages to ensure your Squarespace site stays updated, secure, and running smoothly. We're here for any future updates or tweaks.",
   },
   {
-    question: "How do you communicate progress during a project?",
-    answer: "We believe in transparency. You'll get daily updates and we use tools like Slack or Discord for real-time communication, plus weekly sync calls.",
+    question: "How long does it take to build a Squarespace website?",
+    answer: "A typical project takes anywhere from 2 to 4 weeks depending on the complexity, design requirements, and how quickly we receive feedback and content from your end.",
   },
   {
-    question: "Can you handle tight deadlines?",
-    answer: "Yes, our 'Two Week Sprint' option is specifically designed for rapid delivery without compromising on quality.",
+    question: "Will my site be mobile-friendly and responsive?",
+    answer: "Absolutely. Every Squarespace website we design is fully responsive, ensuring it looks and performs flawlessly across all devices—from desktop to mobile.",
   },
   {
-    question: "Can you work remotely with clients?",
-    answer: "Absolutely. We are a fully remote team and have successfully collaborated with clients from all over the globe.",
-  },
-   {
-    question: "What industries do you work with?",
-    answer: "We work with startups, fintech, e-commerce, and SaaS companies. However, we are adaptable to almost any industry.",
+    question: "Can you help with Squarespace SEO?",
+    answer: "Yes, we implement Squarespace SEO best practices from the start, including optimizing page titles, meta descriptions, image alt text, and site structure to improve your search rankings.",
   },
   {
-    question: "What makes your team unique?",
-    answer: "We are a full-service team for non-technical founders. We don't just write code; we partner with you to build a product that sells.",
+    question: "Do you migrate existing websites to Squarespace?",
+    answer: "Yes, we can seamlessly migrate your current website from WordPress, Wix, or other platforms to Squarespace, preserving your content and SEO equity where possible.",
+  },
+  {
+    question: "Can I update the website myself once it's finished?",
+    answer: "Yes! The beauty of Squarespace is its user-friendly interface. We provide a handover training session so you'll feel completely confident updating text, images, and managing your site.",
   },
 ]
 
@@ -46,9 +47,7 @@ export function FAQ() {
     <section className="py-24 px-4 md:px-6">
       <div className="mx-auto max-w-7xl space-y-16">
          <div className="text-center space-y-4">
-             <div className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium uppercase tracking-widest text-muted-foreground">
-                FAQ
-             </div>
+             <SectionBadge title="FAQ"></SectionBadge>
              <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">Questions Answered</h2>
              <p className="text-lg text-muted-foreground max-w-xl mx-auto">
                  If you don&apos;t see your question answered here it goes without saying, reach out.

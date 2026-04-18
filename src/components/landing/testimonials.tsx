@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
+import { SectionBadge } from "../ui/section-badge"
 
 const testimonials = [
   {
@@ -29,9 +30,7 @@ export function Testimonials() {
     <section className="py-24 px-4 md:px-6">
       <div className="mx-auto max-w-7xl space-y-16">
          <div className="text-center space-y-4">
-             <div className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium uppercase tracking-widest text-muted-foreground">
-                Testimonials
-             </div>
+            <SectionBadge title="Testimonials"></SectionBadge>
              <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">Real Humans, Realest Words</h2>
              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                  Warning! These folks are our long time supporters and they say nice things about us all the time, here are some of them.

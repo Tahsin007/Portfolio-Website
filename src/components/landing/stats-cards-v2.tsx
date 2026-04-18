@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Star } from "lucide-react"
+import { SectionBadge } from "../ui/section-badge"
 
 interface StatCardProps {
   value: string
@@ -102,9 +103,7 @@ export function StatsCardsV2() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <div className="inline-flex items-center rounded-full border border-border/40 bg-muted/30 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-            Track Record
-          </div>
+          <SectionBadge title="Track Record"></SectionBadge>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-serif">
             Numbers that speak for themselves
           </h2>
