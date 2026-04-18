@@ -39,7 +39,7 @@ export default function Home() {
       <AboutMe />
       <FAQ />
       <ArticlesPreview />
-      <Team />
+      {/* <Team /> */}
     </div>
   );
 }

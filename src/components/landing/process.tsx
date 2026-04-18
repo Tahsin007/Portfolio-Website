@@ -4,42 +4,43 @@ import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { 
-  Users, 
-  Rocket, 
-  MessageCircle, 
-  Map
+  Search, 
+  PenTool, 
+  Laptop, 
+  Rocket
 } from "lucide-react"
+import { SectionBadge } from "../ui/section-badge"
 
 gsap.registerPlugin(ScrollTrigger)
 
 const phases = [
   {
     id: 1,
-    title: "Pre Flight Inspection",
+    title: "Discovery & Strategy",
     description:
-      "Before we embark on this journey it's mandatory that we get to know each other first. We'll talk about our projects, ideas and strategies and ultimately see if we are the right fit.",
-    icon: Users,
+      "Every great website starts with a solid foundation. We'll dive deep into your brand, target audience, and goals. Together, we outline a clear roadmap and sitemap tailored specifically for your vision.",
+    icon: Search,
   },
   {
     id: 2,
-    title: "Ready for liftoff",
+    title: "Design & Wireframing",
     description:
-      "You were delighted to see that we're cool like that. We gave you options that fit the aesthetics and the budget you are working with. At this point we both agree it's time for us to start the journey and liftoff.",
-    icon: Rocket,
+      "Next, we translate our strategy into beautiful visual concepts. You'll receive high-fidelity mockups of your core pages, ensuring the aesthetics, typography, and premium vibe perfectly match your brand expectations.",
+    icon: PenTool,
   },
   {
     id: 3,
-    title: "Flying high",
+    title: "Squarespace Development",
     description:
-      "Depending on the project scope, these flights can get loooong, sometimes lasting for months. That's why we'll make sure to storm you with updates every day and answer all the questions your curious mind comes up with.",
-    icon: MessageCircle,
+      "Once the design is approved, the magic happens. I construct your site seamlessly on Squarespace, integrating fluid animations, responsive layouts, and custom CSS to elevate standard templates into a bespoke experience.",
+    icon: Laptop,
   },
   {
     id: 4,
-    title: "Course correction",
+    title: "Launch & Training",
     description:
-      "This is something we don't do very often but it happens. And when it does, we will do our best to figure it out and turn the project in another direction. That's why we'll once again present you with multiple options.",
-    icon: Map,
+      "Before going live, we undergo rigorous testing for technical SEO and mobile optimization. Finally, we pop the champagne, launch your new site, and I provide comprehensive training so you feel confident managing your content.",
+    icon: Rocket,
   },
 ]
 
@@ -106,19 +107,16 @@ export function Process() {
 
           {/* LEFT — completely static */}
           <div className="space-y-8 z-10">
-            <div className="inline-flex items-center rounded-full border border-rose-500/30 bg-rose-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-rose-500 dark:text-rose-400">
-              Process
-            </div>
+            <SectionBadge title="Process" />
             
             <div className="space-y-4">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.1]">
-                <span className="font-serif">Seriously, this is </span>
+                <span className="font-serif">A seamless </span>
                 <br className="hidden md:block" />
-                <span className="font-serif italic font-medium">how it goes.</span>
+                <span className="font-serif italic font-medium">design journey.</span>
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed max-w-md">
-                Here's what you can expect if you choose to work with us.
-                Everything starts with a quick intro call and it goes from there.
+                Here's exactly what you can expect when you partner with me. From our initial strategy call all the way to launching your brilliant new Squarespace site.
               </p>
             </div>
           </div>
