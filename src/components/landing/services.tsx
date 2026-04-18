@@ -3,48 +3,64 @@
 import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { AnimatedButton } from "../ui/animated-button"
 import { 
-  Search, 
-  PenTool, 
-  Laptop, 
-  Rocket
+  ArrowUpRight, 
+  Monitor, 
+  LayoutTemplate, 
+  Settings, 
+  GraduationCap, 
+  LineChart 
 } from "lucide-react"
-import { SectionBadge } from "../ui/section-badge"
 
 gsap.registerPlugin(ScrollTrigger)
 
 const phases = [
   {
     id: 1,
-    title: "Discovery & Strategy",
+    title: "Upgrade your site to 7.1",
     description:
-      "Every great website starts with a solid foundation. We'll dive deep into your brand, target audience, and goals. Together, we outline a clear roadmap and sitemap tailored specifically for your vision.",
-    icon: Search,
+      "No need to purchase a plugin yourself! Take advantage of my purchased tool to facilitate moving your content from Squarespace 7.0 to Squarespace 7.1",
+    icon: ArrowUpRight,
   },
   {
     id: 2,
-    title: "Design & Wireframing",
+    title: "Custom Squarespace Websites",
     description:
-      "Next, we translate our strategy into beautiful visual concepts. You'll receive high-fidelity mockups of your core pages, ensuring the aesthetics, typography, and premium vibe perfectly match your brand expectations.",
-    icon: PenTool,
+      "I build custom Squarespace websites for small businesses, entrepreneurs, and creatives. My goal is to create a website that is not only visually stunning but also highly functional.",
+    icon: Monitor,
   },
   {
     id: 3,
-    title: "Squarespace Development",
+    title: "Squarespace Website Redesign",
     description:
-      "Once the design is approved, the magic happens. I construct your site seamlessly on Squarespace, integrating fluid animations, responsive layouts, and custom CSS to elevate standard templates into a bespoke experience.",
-    icon: Laptop,
+      "I offer professional redesign services to help you create a website that perfectly aligns with your brand's evolution and provides an exceptional user experience.",
+    icon: LayoutTemplate,
   },
   {
     id: 4,
-    title: "Launch & Training",
+    title: "Squarespace Maintenance",
     description:
-      "Before going live, we undergo rigorous testing for technical SEO and mobile optimization. Finally, we pop the champagne, launch your new site, and I provide comprehensive training so you feel confident managing your content.",
-    icon: Rocket,
+      "Keep your website up-to-date and running smoothly. I offer ongoing maintenance services so you can focus on your business with complete peace of mind.",
+    icon: Settings,
   },
+  {
+    id: 5,
+    title: "Squarespace Training",
+    description:
+      "Empower yourself. I provide dedicated training sessions to help you learn how to confidently manage and update your website without needing a developer.",
+    icon: GraduationCap,
+  },
+  {
+    id: 6,
+    title: "Squarespace SEO",
+    description:
+      "Improve your website's visibility. My technical and on-page SEO services will help your site rank higher in search engines, driving more organic traffic.",
+    icon: LineChart,
+  }
 ]
 
-export function Process() {
+export function Services() {
   const wrapperRef = useRef<HTMLDivElement>(null)
   const stickyRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<(HTMLDivElement | null)[]>([])
@@ -107,18 +123,23 @@ export function Process() {
 
           {/* LEFT — completely static */}
           <div className="space-y-8 z-10">
-            <SectionBadge title="Process" />
+            <div className="inline-flex items-center rounded-full border border-rose-500/30 bg-rose-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-rose-500 dark:text-rose-400">
+              Our Services
+            </div>
             
             <div className="space-y-4">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.1]">
-                <span className="font-serif">A seamless </span>
+                <span className="font-serif">Here&apos;s what </span>
                 <br className="hidden md:block" />
-                <span className="font-serif italic font-medium">design journey.</span>
+                <span className="font-serif italic font-medium">we offer.</span>
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed max-w-md">
-                Here's exactly what you can expect when you partner with me. From our initial strategy call all the way to launching your brilliant new Squarespace site.
+                Here&apos;s what you can expect if you choose to work with us.
+                Everything starts with a quick intro call and it goes from there.
               </p>
             </div>
+
+            <AnimatedButton href="/contact">Get In Touch</AnimatedButton>
           </div>
 
           {/* RIGHT — stacked cards, only one visible at a time */}

@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Check, ArrowRight } from "lucide-react"
+import { Check } from "lucide-react"
 
 const services = [
   {
@@ -56,8 +56,8 @@ export function ServicesGrid() {
                     
                     <div className="space-y-4 text-muted-foreground">
                         <p>{service.description}</p>
-                        <p>Before we embark on this journey it's mandatory that we get to know each other first.</p>
-                         <p>We'll talk about our projects, ideas and strategies and ultimately see if we are the right fit.</p>
+                        <p>Before we embark on this journey it&apos;s mandatory that we get to know each other first.</p>
+                         <p>We&apos;ll talk about our projects, ideas and strategies and ultimately see if we are the right fit.</p>
                     </div>
                 </div>
              </motion.div>

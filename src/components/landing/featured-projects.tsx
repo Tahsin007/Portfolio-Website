@@ -48,7 +48,7 @@ export function FeaturedProjects() {
         <div className="flex flex-col items-center text-center space-y-4">
           <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">Actual Case Studies</h2>
           <p className="max-w-2xl text-muted-foreground text-lg">
-            Don't take our word for it, see it for yourself. <br />
+            Don&apos;t take our word for it, see it for yourself. <br />
             Here are some of the biggest projects we delivered this year.
           </p>
         </div>

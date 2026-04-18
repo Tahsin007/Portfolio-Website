@@ -63,7 +63,7 @@ export function Navbar() {
             href="/contact"
             className="hidden sm:flex items-center gap-1 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
           >
-            <span>Let's Talk</span>
+            <span>Let&apos;s Talk</span>
             <ArrowUpRight className="h-3 w-3" />
           </Link>
         </div>

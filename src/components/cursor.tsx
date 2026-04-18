@@ -6,6 +6,12 @@ import { motion, useMotionValue, useSpring } from "framer-motion"
 export function Cursor() {
   const [mounted, setMounted] = useState(false)
   
+  useEffect(
+    // eslint-disable-next-line react-hooks/exhaustive-deps, react-hooks/set-state-in-effect
+    () => {
+    setMounted(true); // Set mounted to true once on client-side mount
+  }, []); // Empty dependency array ensures it runs only once
+
   const cursorX = useMotionValue(-100)
   const cursorY = useMotionValue(-100)
   
@@ -14,18 +20,19 @@ export function Cursor() {
   const cursorYSpring = useSpring(cursorY, springConfig)
 
   useEffect(() => {
-    setMounted(true)
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX - 16)
       cursorY.set(e.clientY - 16)
     }
 
-    window.addEventListener("mousemove", moveCursor)
+    if (mounted) { // Only add event listener if mounted
+      window.addEventListener("mousemove", moveCursor)
+    }
 
     return () => {
       window.removeEventListener("mousemove", moveCursor)
     }
-  }, [cursorX, cursorY])
+  }, [cursorX, cursorY, mounted]) // Add mounted to dependencies
 
   if (!mounted) return null
 
